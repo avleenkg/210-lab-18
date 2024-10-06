@@ -10,7 +10,7 @@ struct Node{
     Node * next;
 };
 void output(Node *);
-void addfront(Node* &);
+void addfront(Node* &, float r, string c);
 void addback(Node * &);
 
 int main() {
@@ -26,7 +26,11 @@ int main() {
         cin >> entry;
     }
     if (entry == 1) {
-
+        float rating;
+        string comment;
+        cout << "Enter review rating 0-5: ";
+        cin >> rating;
+        cit
     }
     else if (entry == 2) {
 
@@ -50,8 +54,8 @@ void output(Node * head) {
     }
     cout << endl;
 }
-//copied from lab 17
-void addfront(Node * head) {
+
+void addfront(Node * head, float r, string c) {
     Node *newVal = new Node;
     if (!head) {
         head = newVal;
