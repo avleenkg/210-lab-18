@@ -9,7 +9,7 @@ struct Node{
     string comment;
     Node * next;
 };
-void output(Node *);
+void output(Node *, float t, int ct);
 void addfront(Node* &, float r, string c);
 void addback(Node * &, float r, string c);
 
@@ -18,6 +18,9 @@ int main() {
     char another;
     int count = 0;
     float total;
+    float r;
+    string c;
+
     //ask user which method to use, then apply
     cout << "Which linked list method should we use?\n";
     cout << "\t[1] New nodes are added at the head of the linked list\n";
@@ -30,8 +33,6 @@ int main() {
     }
     do {
         if (entry == 1) {
-            float r;
-            string c;
             cout << "Enter review rating 0-5: ";
             cin >> r;
             cin.ignore();
@@ -40,8 +41,6 @@ int main() {
             addfront(head, r, c);
         }
         else if (entry == 2) {
-            float r;
-            string c;
             cout << "Enter review rating 0-5: ";
             cin >> r;
             cin.ignore();
@@ -58,10 +57,11 @@ int main() {
     } while (another == 'Y');
 
     cout << "Outputting all reviews:\n";
-    output(head);
+    output(head, total, count);
+
 }
 //output function copied from lab 17
-void output(Node * head) { 
+void output(Node * head, float t, int ct) { 
     if (!head){
         cout << "Empty list\n";
     }
@@ -72,10 +72,11 @@ void output(Node * head) {
             cout << "\t> [ Review #" << count++ << " ] " << current->rating << ": " << current->comment << endl;
             current = current->next; //current points to next node now
         }
+        cout << "\t> [ Average ]: " << (t/double(ct)) << endl;
     }
     cout << endl;
 }
-
+//adds nodes to front of list
 void addfront(Node * &head, float r, string c) {
     Node *newVal = new Node;
     if (!head) {
@@ -91,6 +92,7 @@ void addfront(Node * &head, float r, string c) {
         head = newVal;
     }
 }
+//adds nodes to back of list
 void addback(Node * &head, float r, string c) {
     Node *newVal = new Node;
     if (!head) {
