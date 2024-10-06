@@ -15,6 +15,9 @@ void addback(Node * &, float r, string c);
 
 int main() {
     Node *head = nullptr;
+    char another;
+    int count = 0;
+    float total;
     //ask user which method to use, then apply
     cout << "Which linked list method should we use?\n";
     cout << "\t[1] New nodes are added at the head of the linked list\n";
@@ -46,11 +49,16 @@ int main() {
             getline(cin, c);
             addback(head, r, c);
         }
-        cout << "Enter another review? Y/N: ";
-        
-    }
-    
+        count++;
+        total += r;
 
+        cout << "Enter another review? Y/N: ";
+        cin >> another;
+        another = toupper(another);
+    } while (another == 'Y');
+
+    cout << "Outputting all reviews:\n";
+    output(head);
 }
 //output function copied from lab 17
 void output(Node * head) { 
@@ -61,7 +69,7 @@ void output(Node * head) {
         int count = 1;
         Node * current = head; //current and head now point at same thing, the first node
         while (current) {
-            cout << "[ Review #" << count++ << " ] " << current->rating << ": " << current->comment << endl;
+            cout << "\t> [ Review #" << count++ << " ] " << current->rating << ": " << current->comment << endl;
             current = current->next; //current points to next node now
         }
     }
