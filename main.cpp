@@ -25,27 +25,30 @@ int main() {
         cout << "Error. Please enter 1 or 2: ";
         cin >> entry;
     }
-    if (entry == 1) {
-        float r;
-        string c;
-        cout << "Enter review rating 0-5: ";
-        cin >> r;
-        cin.ignore();
-        cout << "Enter review comments: ";
-        getline(cin, c);
-        addfront(head, r, c);
+    do {
+        if (entry == 1) {
+            float r;
+            string c;
+            cout << "Enter review rating 0-5: ";
+            cin >> r;
+            cin.ignore();
+            cout << "Enter review comments: ";
+            getline(cin, c);
+            addfront(head, r, c);
+        }
+        else if (entry == 2) {
+            float r;
+            string c;
+            cout << "Enter review rating 0-5: ";
+            cin >> r;
+            cin.ignore();
+            cout << "Enter review comments: ";
+            getline(cin, c);
+            addback(head, r, c);
+        }
+        cout << "Enter another review? Y/N: ";
+        
     }
-    else if (entry == 2) {
-        float r;
-        string c;
-        cout << "Enter review rating 0-5: ";
-        cin >> r;
-        cin.ignore();
-        cout << "Enter review comments: ";
-        getline(cin, c);
-        addback(head, r, c);
-    }
-    
     
 
 }
@@ -70,14 +73,32 @@ void addfront(Node * &head, float r, string c) {
     if (!head) {
         head = newVal;
         newVal->next = nullptr;
-        newVal->value = tmp_val;
+        newVal->rating = r;
+        newVal->comment = c;
     }
     else {
         newVal->next = head;
-        newVal->value = tmp_val;
+        newVal->rating = r;
+        newVal->comment = c;
         head = newVal;
     }
 }
 void addback(Node * &head, float r, string c) {
-    
+    Node *newVal = new Node;
+    if (!head) {
+        head = newVal;
+        newVal->next = nullptr;
+        newVal->rating = r;
+        newVal->comment = c;
+    }
+    else {
+        Node *current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newVal;
+        newVal->next = nullptr;
+        newVal->rating = r;
+        newVal->comment = c;
+    }
 }
