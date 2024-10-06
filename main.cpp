@@ -11,7 +11,7 @@ struct Node{
 };
 void output(Node *);
 void addfront(Node* &, float r, string c);
-void addback(Node * &);
+void addback(Node * &, float r, string c);
 
 int main() {
     Node *head = nullptr;
@@ -26,14 +26,24 @@ int main() {
         cin >> entry;
     }
     if (entry == 1) {
-        float rating;
-        string comment;
+        float r;
+        string c;
         cout << "Enter review rating 0-5: ";
-        cin >> rating;
-        cit
+        cin >> r;
+        cin.ignore();
+        cout << "Enter review comments: ";
+        getline(cin, c);
+        addfront(head, r, c);
     }
     else if (entry == 2) {
-
+        float r;
+        string c;
+        cout << "Enter review rating 0-5: ";
+        cin >> r;
+        cin.ignore();
+        cout << "Enter review comments: ";
+        getline(cin, c);
+        addback(head, r, c);
     }
     
     
@@ -55,7 +65,7 @@ void output(Node * head) {
     cout << endl;
 }
 
-void addfront(Node * head, float r, string c) {
+void addfront(Node * &head, float r, string c) {
     Node *newVal = new Node;
     if (!head) {
         head = newVal;
@@ -67,4 +77,7 @@ void addfront(Node * head, float r, string c) {
         newVal->value = tmp_val;
         head = newVal;
     }
+}
+void addback(Node * &head, float r, string c) {
+    
 }
