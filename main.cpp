@@ -10,8 +10,11 @@ struct Node{
     Node * next;
 };
 void output(Node *);
+void addfront(Node* &);
+void addback(Node * &);
 
 int main() {
+    Node *head = nullptr;
     //ask user which method to use, then apply
     cout << "Which linked list method should we use?\n";
     cout << "\t[1] New nodes are added at the head of the linked list\n";
@@ -30,10 +33,6 @@ int main() {
     }
     
     
-    
-
-
-
 
 }
 //output function copied from lab 17
@@ -45,9 +44,23 @@ void output(Node * head) {
         int count = 1;
         Node * current = head; //current and head now point at same thing, the first node
         while (current) {
-            cout << "[ Review #" << count++ << " ] " << current->rating << ": " << current << endl;
+            cout << "[ Review #" << count++ << " ] " << current->rating << ": " << current->comment << endl;
             current = current->next; //current points to next node now
         }
     }
     cout << endl;
+}
+//copied from lab 17
+void addfront(Node * head) {
+    Node *newVal = new Node;
+    if (!head) {
+        head = newVal;
+        newVal->next = nullptr;
+        newVal->value = tmp_val;
+    }
+    else {
+        newVal->next = head;
+        newVal->value = tmp_val;
+        head = newVal;
+    }
 }
